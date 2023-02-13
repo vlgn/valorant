@@ -1,0 +1,4 @@
+@import "_mixins.scss";
+
+@include font("Oswald", normal, 400, "./assets/fonts/Oswald-Regular.woff2");
+@include font("Oswald", normal, 700, "./assets/fonts/Oswald-Bold.woff2");

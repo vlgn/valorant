@@ -1,0 +1,65 @@
+@import "system/_vars.scss";
+@import "/src/scss/system/reset.css";
+
+::placeholder {
+  color: #666;
+}
+::selection {
+  color: #fff;
+}
+html {
+  font-size: calc(6px + 0.2083335vw);
+}
+input,
+textarea {
+  outline: none;
+
+  &:focus:required:invalid {
+    border-color: red;
+  }
+
+  &:required:valid {
+    border-color: green;
+  }
+}
+body {
+  background-color: rgb(240, 240, 240);
+  font-family: $Oswald;
+  font-size: 1.6rem;
+  min-width: 320px;
+  position: relative;
+  line-height: 2.4rem;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+a {
+  text-decoration: none;
+  color: currentColor;
+
+  &:active {
+    outline: none;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  font-weight: 400;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
