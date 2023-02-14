@@ -1,31 +1,32 @@
 <template>
-  <div class="region-dropdown" :class="{ active: show }">
-    <div class="region-dropdown__selected-region" @click="handlerDropdown()">
+  <div class="rank-dropdown" :class="{ active: show }">
+    <h2 class="rank-dropdown__title">leaderboard</h2>
+    <div class="rank-dropdown__selected-rank" @click="handlerDropdown()">
       <span v-if="modelValue">{{ modelValue.title }}</span>
-      <span v-else>Не выбрано</span>
     </div>
-    <div class="region-dropdown__options">
+    <div class="rank-dropdown__options">
       <div
-        v-for="(item, index) in regions"
+        class="rank-dropdown__options-item"
+        v-for="(item, index) in ranks"
         :key="index"
-        class="region-dropdown__options-item"
-        @click="regionSelect(item)"
+        @click="rankSelect(item)"
       >
         {{ item.title }}
       </div>
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  name: "regionDropdown",
+  name: "RankDropdown",
   props: {
-    regions: {
-      type: Object,
+    ranks: {
+      type: Array,
       default: () => {},
     },
     modelValue: {
-      type: Object,
+      type: Array,
       default: () => {},
     },
   },
@@ -35,8 +36,8 @@ export default {
     };
   },
   methods: {
-    regionSelect(region) {
-      this.$emit("update:modelValue", region);
+    rankSelect(rank) {
+      this.$emit("update:modelValue", rank);
       this.handlerDropdown();
     },
     handlerDropdown() {
@@ -46,34 +47,37 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.region-dropdown {
-  cursor: pointer;
-  width: fit-content;
-
-  &__selected-region {
-    padding: 0 1rem;
+<style lang="scss" scoped>
+.rank-dropdown {
+  text-transform: uppercase;
+  text-align: center;
+  &__selected-rank {
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 4rem;
+    font-weight: 700;
     position: relative;
-    width: 13rem;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     span:after {
       content: "";
-      background-image: url(../assets/img/arrow-down.svg);
+      background-image: url(../assets/img/arrow-down-white.svg);
       display: inline-block;
       position: absolute;
-      width: 2rem;
-      height: 2rem;
+      width: 3rem;
+      height: 3rem;
       top: 0;
-      right: 0.5rem;
+      right: -3rem;
       bottom: 0;
       margin: auto;
     }
   }
   &__options {
     display: none;
+    color: #000;
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     margin-top: 1rem;
-    width: 13rem;
+    width: 14rem;
     background-color: #fff;
     box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
     overflow: hidden;
@@ -86,10 +90,9 @@ export default {
       }
     }
   }
-
   &.active {
-    .region-dropdown {
-      &__selected-region span:after {
+    .rank-dropdown {
+      &__selected-rank span:after {
         transform: rotate(-180deg);
       }
 
@@ -100,3 +103,4 @@ export default {
   }
 }
 </style>
+>

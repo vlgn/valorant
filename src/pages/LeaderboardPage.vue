@@ -11,13 +11,13 @@
       ></RegionDropdown>
     </div>
     <div class="filter">
-      <div class="filter__icon">
-        <img src="../assets/radiant-badge.png" alt="rank-icon" />
-      </div>
-      <div class="filter__rank">
-        <h2 class="filter__rank-title">leaderboard</h2>
-        <h3 class="filter__rank-name">radiant</h3>
-      </div>
+      <img
+        class="filter__icon"
+        src="../assets/radiant-badge.png"
+        alt="rank-icon"
+      />
+
+      <RankDropdown :ranks="ranks" v-model="selectedRank"></RankDropdown>
       <div class="filter__episode">
         <h2 class="filter__episode-name">episode 1</h2>
         <h3 class="filter__act-name">act 1</h3>
@@ -28,11 +28,13 @@
 
 <script>
 import RegionDropdown from "@/components/region-dropdown";
+import RankDropdown from "@/components/RankDropdown.vue";
 
 export default {
   name: "LeaderboardPage",
   components: {
     RegionDropdown,
+    RankDropdown,
   },
   data() {
     return {
@@ -40,6 +42,23 @@ export default {
         title: "europe",
         code: "eu",
       },
+      selectedRank: {
+        title: "radiant",
+      },
+      ranks: [
+        {
+          title: "radiant",
+        },
+        {
+          title: "immortal 3",
+        },
+        {
+          title: "immortal 2",
+        },
+        {
+          title: "immortal 1",
+        },
+      ],
       regions: [
         {
           title: "europe",
@@ -70,7 +89,6 @@ export default {
   },
 };
 </script>
-
 <style lang="scss" scoped>
 .title {
   text-align: center;
@@ -106,23 +124,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   &__icon {
-    background-color: black;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  &__rank {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  &__rank-name {
-    margin-top: 1rem;
-    font-size: 4rem;
-    font-weight: 700;
   }
   &__episode {
     display: flex;
@@ -134,11 +138,6 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-  }
-  &__act-name {
-    margin-top: 1rem;
-    font-weight: 700;
-    font-size: 3rem;
   }
 }
 </style>
