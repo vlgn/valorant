@@ -5,7 +5,10 @@
         <input type="text" placeholder="Playername#Tag" class="search__input" />
         <i class="uil uil-search"></i>
       </div>
-      <region-dropdown :regions="regions"></region-dropdown>
+      <RegionDropdown
+        v-model="selectedRegion"
+        :regions="regions"
+      ></RegionDropdown>
     </div>
     <div class="filter">
       <div class="filter__icon">
@@ -24,14 +27,18 @@
 </template>
 
 <script>
-import regionDropdown from "./components/region-dropdown";
+import RegionDropdown from "./components/region-dropdown";
 export default {
   name: "App",
   components: {
-    regionDropdown,
+    RegionDropdown,
   },
   data() {
     return {
+      selectedRegion: {
+        title: "europe",
+        code: "eu",
+      },
       regions: [
         {
           title: "europe",

@@ -1,15 +1,16 @@
 <template>
-  <div class="region-dropdown">
-    <div @click="isDropdownVisible()" class="region-dropdown__selected-region">
-      <span>{{ selectedRegion }}</span>
+  <div class="region-dropdown" :class="{ active: show }">
+    <div class="region-dropdown__selected-region" @click="handlerDropdown()">
+      <span v-if="modelValue">{{ modelValue.title }}</span>
+      <span v-else>Не выбрано</span>
       <i class="uil uil-arrow-down"></i>
     </div>
-    <div :class="{ active: show }" class="region-dropdown__options">
+    <div class="region-dropdown__options">
       <div
         v-for="(item, index) in regions"
         :key="index"
-        @click="regionSelect(item.title)"
         class="region-dropdown__options-item"
+        @click="regionSelect(item)"
       >
         {{ item.title }}
       </div>
@@ -20,23 +21,26 @@
 export default {
   name: "regionDropdown",
   props: {
-    regions: Object,
-    // default() {
-    //   return { title: "europe" };
-    // },
+    regions: {
+      type: Object,
+      default: () => {},
+    },
+    modelValue: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {
-      selectedRegion: "europe",
       show: false,
     };
   },
   methods: {
     regionSelect(region) {
-      this.selectedRegion = region;
-      this.show = !this.show;
+      this.$emit("update:modelValue", region);
+      this.handlerDropdown();
     },
-    isDropdownVisible() {
+    handlerDropdown() {
       this.show = !this.show;
     },
   },
@@ -46,12 +50,10 @@ export default {
 <style lang="scss">
 .region-dropdown {
   cursor: pointer;
-  background-color: green;
   position: relative;
   width: 12rem;
   &__selected-region {
     padding: 0 1rem;
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -77,10 +79,16 @@ export default {
       }
     }
   }
-  .active {
-    display: block;
-    .region-dropdown__selected-region i {
-      transform: rotate(-180deg);
+
+  &.active {
+    .region-dropdown {
+      &__selected-region i {
+        transform: rotate(-180deg);
+      }
+
+      &__options {
+        display: block;
+      }
     }
   }
 }
