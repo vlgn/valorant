@@ -1,11 +1,16 @@
 @import "system/_vars.scss";
 @import "/src/scss/system/reset.css";
 
+.container {
+  margin: 0 auto;
+  max-width: 120rem;
+}
+
 ::placeholder {
   color: #666;
 }
 ::selection {
-  color: #fff;
+  color: red;
 }
 html {
   font-size: calc(6px + 0.2083335vw);
@@ -25,7 +30,7 @@ textarea {
 body {
   background-color: rgb(240, 240, 240);
   font-family: $Oswald;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   min-width: 320px;
   position: relative;
   line-height: 2.4rem;
@@ -40,7 +45,10 @@ a {
     outline: none;
   }
 }
-
+img {
+  height: 100%;
+  width: 100%;
+}
 p {
   margin: 0;
 }

@@ -1,13 +1,18 @@
 <template>
-  <div class="app">
-    <router-view></router-view>
-  </div>
+  <MainHeader></MainHeader>
+  <router-view></router-view>
 </template>
 
 <script>
-export default {};
+import MainHeader from "@/components/MainHeader.vue";
+export default {
+  components: { MainHeader },
+};
 </script>
 
 <style lang="scss">
 @import "@/scss/_config.scss";
+#app {
+  height: 200vh;
+}
 </style>

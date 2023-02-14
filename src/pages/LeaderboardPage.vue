@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <main class="container">
     <div class="search">
       <div class="search__input">
         <input type="text" placeholder="Playername#Tag" class="search__input" />
@@ -23,7 +23,7 @@
         <h3 class="filter__act-name">act 1</h3>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -71,11 +71,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.container {
-  margin: 0 auto;
-  max-width: 120rem;
-}
+<style lang="scss" scoped>
 .title {
   text-align: center;
   font-weight: bold;
@@ -102,6 +98,8 @@ export default {
   }
 }
 .filter {
+  padding: 2rem;
+  height: 10rem;
   color: white;
   background-color: black;
   display: flex;
@@ -109,14 +107,11 @@ export default {
   align-items: center;
   &__icon {
     background-color: black;
-    width: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   &__rank {
-    padding: 2rem;
-    width: 80%;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -130,7 +125,6 @@ export default {
     font-weight: 700;
   }
   &__episode {
-    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -140,7 +134,6 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    width: 15%;
   }
   &__act-name {
     margin-top: 1rem;
