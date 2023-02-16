@@ -18,23 +18,25 @@
       />
 
       <RankDropdown :ranks="ranks" v-model="selectedRank"></RankDropdown>
-      <div class="filter__episode">
-        <h2 class="filter__episode-name">episode 1</h2>
-        <h3 class="filter__act-name">act 1</h3>
-      </div>
+      <SeasonDropdown
+        :seasons="seasons"
+        v-model="selectedSeason"
+      ></SeasonDropdown>
     </div>
   </main>
 </template>
 
 <script>
 import RegionDropdown from "@/components/region-dropdown";
-import RankDropdown from "@/components/RankDropdown.vue";
+import RankDropdown from "@/components/RankDropdown";
+import SeasonDropdown from "@/components/SeasonDropdown";
 
 export default {
   name: "LeaderboardPage",
   components: {
     RegionDropdown,
     RankDropdown,
+    SeasonDropdown,
   },
   data() {
     return {
@@ -45,6 +47,38 @@ export default {
       selectedRank: {
         title: "radiant",
       },
+      selectedSeason: {
+        episode: "episode 1",
+        act: "act 1",
+        code: "e1a1",
+      },
+      seasons: [
+        {
+          episode: "episode 1",
+          act: "act 1",
+          code: "e1a1",
+        },
+        {
+          episode: "episode 1",
+          act: "act 2",
+          code: "e1a2",
+        },
+        {
+          episode: "episode 1",
+          act: "act 3",
+          code: "e1a3",
+        },
+        {
+          episode: "episode 2",
+          act: "act 1",
+          code: "e2a1",
+        },
+        {
+          episode: "episode 2",
+          act: "act 2",
+          code: "e2a3",
+        },
+      ],
       ranks: [
         {
           title: "radiant",
@@ -127,17 +161,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  &__episode {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-transform: uppercase;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
   }
 }
 </style>

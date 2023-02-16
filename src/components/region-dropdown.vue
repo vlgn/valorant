@@ -61,6 +61,7 @@ export default {
       background-image: url(../assets/img/arrow-down.svg);
       display: inline-block;
       position: absolute;
+      transition: transform 0.5s;
       width: 2rem;
       height: 2rem;
       top: 0;

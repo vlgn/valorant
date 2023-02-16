@@ -22,11 +22,11 @@ export default {
   name: "RankDropdown",
   props: {
     ranks: {
-      type: Array,
+      type: Object,
       default: () => {},
     },
     modelValue: {
-      type: Array,
+      type: Object,
       default: () => {},
     },
   },
@@ -68,6 +68,7 @@ export default {
       right: -3rem;
       bottom: 0;
       margin: auto;
+      transition: transform 0.5s;
     }
   }
   &__options {
@@ -103,4 +104,3 @@ export default {
   }
 }
 </style>
->
