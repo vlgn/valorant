@@ -75,8 +75,6 @@ export default {
     display: none;
     color: #000;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     margin-top: 1rem;
     width: 14rem;
     background-color: #fff;

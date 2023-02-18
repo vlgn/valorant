@@ -92,10 +92,10 @@ export default {
     position: absolute;
     margin-top: 1rem;
     width: fit-content;
-
+    height: 15rem;
     background-color: #fff;
     box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
+    overflow-y: scroll;
     &-item {
       padding: 0 1rem;
       cursor: pointer;

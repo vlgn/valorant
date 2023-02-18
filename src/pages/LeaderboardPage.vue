@@ -23,6 +23,7 @@
         v-model="selectedSeason"
       ></SeasonDropdown>
     </div>
+    <LeaderboardTable :competitiveTier="competitiveTier"></LeaderboardTable>
   </main>
 </template>
 
@@ -30,6 +31,8 @@
 import RegionDropdown from "@/components/region-dropdown";
 import RankDropdown from "@/components/RankDropdown";
 import SeasonDropdown from "@/components/SeasonDropdown";
+import LeaderboardTable from "@/components/LeaderboardTable.vue";
+import unofficialValorantApi from "unofficial-valorant-api";
 
 export default {
   name: "LeaderboardPage",
@@ -37,6 +40,7 @@ export default {
     RegionDropdown,
     RankDropdown,
     SeasonDropdown,
+    LeaderboardTable,
   },
   data() {
     return {
@@ -48,35 +52,75 @@ export default {
         title: "radiant",
       },
       selectedSeason: {
-        episode: "episode 1",
-        act: "act 1",
-        code: "e1a1",
+        episode: "episode 2",
+        act: "act 2",
+        code: "e2a1",
       },
       seasons: [
         {
-          episode: "episode 1",
+          episode: "episode 6",
           act: "act 1",
-          code: "e1a1",
+          code: "e6a1",
         },
         {
-          episode: "episode 1",
-          act: "act 2",
-          code: "e1a2",
-        },
-        {
-          episode: "episode 1",
+          episode: "episode 5",
           act: "act 3",
-          code: "e1a3",
+          code: "e5a3",
+        },
+        {
+          episode: "episode 5",
+          act: "act 2",
+          code: "e5a2",
+        },
+        {
+          episode: "episode 5",
+          act: "act 1",
+          code: "e5a1",
+        },
+        {
+          episode: "episode 4",
+          act: "act 3",
+          code: "e4a3",
+        },
+        {
+          episode: "episode 4",
+          act: "act 2",
+          code: "e4a2",
+        },
+        {
+          episode: "episode 4",
+          act: "act 1",
+          code: "e4a1",
+        },
+        {
+          episode: "episode 3",
+          act: "act 3",
+          code: "e3a3",
+        },
+        {
+          episode: "episode 3",
+          act: "act 2",
+          code: "e3a2",
+        },
+        {
+          episode: "episode 3",
+          act: "act 1",
+          code: "e3a1",
+        },
+        {
+          episode: "episode 2",
+          act: "act 3",
+          code: "e2a3",
+        },
+        {
+          episode: "episode 2",
+          act: "act 2",
+          code: "e2a2",
         },
         {
           episode: "episode 2",
           act: "act 1",
           code: "e2a1",
-        },
-        {
-          episode: "episode 2",
-          act: "act 2",
-          code: "e2a3",
         },
       ],
       ranks: [
@@ -119,7 +163,47 @@ export default {
           code: "latam",
         },
       ],
+      competitiveTier: {},
     };
+  },
+  mounted() {
+    this.getTableData();
+  },
+  watch: {
+    selectedRegion() {
+      this.getTableData();
+    },
+    selectedSeason() {
+      this.getTableData();
+    },
+  },
+  methods: {
+    async getTableData() {
+      this.competitiveTier = {};
+      const VAPI = new unofficialValorantApi();
+      const response = await VAPI.getLeaderboard({
+        version: "v1",
+        region: this.selectedRegion.code,
+        season: this.selectedSeason.code,
+      });
+      const responseObj = {};
+
+      response.data.forEach((element) => {
+        if (!responseObj[element.competitiveTier]) {
+          responseObj[element.competitiveTier] = [];
+        }
+
+        responseObj[element.competitiveTier].push(element);
+      });
+
+      Object.entries(responseObj)
+        .sort((a, b) => b[0] - a[0])
+        .forEach((tier) => {
+          this.competitiveTier[`tier-${tier[0]}`] = tier[1];
+        });
+
+      console.log(this.competitiveTier);
+    },
   },
 };
 </script>
