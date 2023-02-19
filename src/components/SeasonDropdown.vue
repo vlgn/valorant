@@ -88,6 +88,7 @@ export default {
   }
   &__options {
     display: none;
+    border: solid 1px #000;
     color: #000;
     position: absolute;
     margin-top: 1rem;
@@ -97,11 +98,11 @@ export default {
     box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
     overflow-y: scroll;
     &-item {
-      padding: 0 1rem;
+      padding: 0.5rem 1rem;
       cursor: pointer;
       &:hover {
         color: #fff;
-        background: darkblue;
+        background: #000;
       }
     }
   }

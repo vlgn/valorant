@@ -12,6 +12,15 @@
 ::selection {
   color: red;
 }
+::-webkit-scrollbar {
+  width: 1rem;
+}
+::-webkit-scrollbar-track {
+  background: #d5d5d5;
+}
+::-webkit-scrollbar-thumb {
+  background: #a8a8a8;
+}
 html {
   font-size: calc(6px + 0.2083335vw);
 }

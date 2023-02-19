@@ -234,7 +234,7 @@ export default {
   }
 }
 .filter {
-  padding: 2rem;
+  padding: 6rem;
   height: 10rem;
   color: white;
   background-color: black;
