@@ -225,9 +225,10 @@ export default {
   gap: 1rem;
   &__input {
     background-color: rgb(206, 206, 206);
-    padding: 0.5rem 1rem;
+    padding: 0 1rem;
     border-radius: 6px;
     input {
+      padding: 1rem;
       max-width: 14rem;
     }
     input::placeholder {
@@ -249,20 +250,20 @@ export default {
 
   align-items: center;
   &__rank-dropdown {
-    border: 1px solid #fff;
+    border: 1px solid #cecece;
     height: 100%;
     width: 100%;
   }
   &__season-dropdown {
     padding-right: 2rem;
-    border: 1px solid #fff;
+    border: 1px solid #cecece;
     height: 100%;
     width: 20rem;
   }
   &__icon {
     height: 100%;
     width: 15rem;
-    border: 1px solid #fff;
+    border: 1px solid #cecece;
     display: flex;
     align-items: center;
     justify-content: center;

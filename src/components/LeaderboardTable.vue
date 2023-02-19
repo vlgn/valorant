@@ -5,7 +5,7 @@
         <th class="table__rank">rank</th>
         <th class="table__rating">rating</th>
         <th class="table__name">name</th>
-        <th class="table__games">games</th>
+        <th class="table__games">wins</th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +18,12 @@
             <p>{{ "#" + player.tagLine }}</p>
           </td>
           <td v-else class="table__name">Secret Agent</td>
-          <td class="table__games">{{ player.numberOfWins }}</td>
+          <td class="table__games">
+            <p class="wrap">
+              <span class="table__games-count"> {{ player.numberOfWins }}</span>
+              <span class="table__games-label">games won</span>
+            </p>
+          </td>
         </tr>
       </template>
     </tbody>
@@ -40,8 +45,8 @@ export default {
 <style lang="scss" scoped>
 .table {
   text-transform: uppercase;
-  width: 108rem;
-  margin: 0 auto;
+  width: 100%;
+  text-align: center;
 
   td {
     padding: 1rem;
@@ -50,26 +55,30 @@ export default {
   thead {
     font-weight: 700;
   }
+
   p {
     display: inline;
     color: grey;
   }
 
   &__rank {
-    width: 8rem;
-    text-align: center;
+    width: 11.4rem;
   }
   &__rating {
     width: 8rem;
-    text-align: center;
   }
   &__name {
     width: auto;
     text-align: left;
   }
   &__games {
-    width: 8rem;
-    text-align: center;
+    width: 15.5rem;
+    &-count {
+      color: #000;
+    }
+    &-label {
+      margin-left: 0.5rem;
+    }
   }
 }
 </style>

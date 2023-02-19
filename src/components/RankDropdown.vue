@@ -81,7 +81,6 @@ export default {
   }
   &__options {
     font-family: $Pretendard;
-    display: none;
     color: #000;
     position: absolute;
     width: 15rem;
@@ -90,12 +89,18 @@ export default {
     top: 9rem;
     right: 0;
     margin-top: 1rem;
+    transition: opacity 0.2s ease-out;
+
+    visibility: hidden;
+    opacity: 0;
+    border: 1px solid #cecece;
     &-item {
       padding: 1rem 1rem;
       cursor: pointer;
+      transition: background 0.3s linear;
       &:hover {
         color: #fff;
-        background: #cecece;
+        background: #000;
       }
     }
   }
@@ -106,7 +111,8 @@ export default {
       }
 
       &__options {
-        display: block;
+        visibility: visible;
+        opacity: 1;
       }
     }
   }

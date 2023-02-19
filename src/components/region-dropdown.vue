@@ -1,6 +1,10 @@
 <template>
-  <div class="region-dropdown" :class="{ active: show }">
-    <div class="region-dropdown__selected-region" @click="handlerDropdown()">
+  <div
+    class="region-dropdown"
+    :class="{ active: show }"
+    @click="handlerDropdown()"
+  >
+    <div class="region-dropdown__selected-region">
       <span v-if="modelValue">{{ modelValue.title }}</span>
       <span v-else>Не выбрано</span>
     </div>
@@ -37,7 +41,6 @@ export default {
   methods: {
     regionSelect(region) {
       this.$emit("update:modelValue", region);
-      this.handlerDropdown();
     },
     handlerDropdown() {
       this.show = !this.show;
@@ -56,7 +59,7 @@ export default {
   border-radius: 6px;
 
   &__selected-region {
-    margin: 1rem 1rem;
+    padding: 0.7rem 1rem;
     span:after {
       content: "";
       background-image: url(../assets/img/arrow-down.svg);
@@ -74,16 +77,19 @@ export default {
   &__options {
     z-index: 1;
     border-radius: 4px;
-    display: none;
     position: absolute;
     margin-top: 1rem;
-    height: 20rem;
+    height: 17rem;
     width: 100%;
     background-color: #fff;
     overflow-y: scroll;
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+    visibility: hidden;
     &-item {
       padding: 1rem 1rem;
       cursor: pointer;
+      transition: background 0.3s linear;
       &:hover {
         color: #fff;
         background: #cecece;
@@ -96,9 +102,9 @@ export default {
       &__selected-region span:after {
         transform: rotate(-180deg);
       }
-
       &__options {
-        display: block;
+        opacity: 1;
+        visibility: visible;
       }
     }
   }

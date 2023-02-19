@@ -82,6 +82,7 @@ export default {
   }
   &__link {
     cursor: pointer;
+    text-transform: capitalize;
   }
 }
 </style>
