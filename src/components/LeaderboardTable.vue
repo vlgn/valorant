@@ -38,27 +38,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-tr {
-  text-align: left;
-}
 .table {
+  text-transform: uppercase;
+  width: 108rem;
+  margin: 0 auto;
+
+  td {
+    padding: 1rem;
+    background-color: #cecece;
+  }
+  thead {
+    font-weight: 700;
+  }
   p {
     display: inline;
     color: grey;
   }
-  text-transform: uppercase;
-  width: 100%;
+
   &__rank {
     width: 8rem;
+    text-align: center;
   }
   &__rating {
     width: 8rem;
+    text-align: center;
   }
   &__name {
     width: auto;
+    text-align: left;
   }
   &__games {
     width: 8rem;
+    text-align: center;
   }
 }
 </style>

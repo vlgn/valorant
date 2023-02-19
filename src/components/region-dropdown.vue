@@ -48,14 +48,15 @@ export default {
 
 <style lang="scss">
 .region-dropdown {
+  text-transform: capitalize;
+  position: relative;
   cursor: pointer;
-  width: fit-content;
+  width: 15rem;
+  background-color: #cecece;
+  border-radius: 6px;
 
   &__selected-region {
-    padding: 0 1rem;
-    position: relative;
-    width: 13rem;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin: 1rem 1rem;
     span:after {
       content: "";
       background-image: url(../assets/img/arrow-down.svg);
@@ -71,19 +72,21 @@ export default {
     }
   }
   &__options {
+    z-index: 1;
+    border-radius: 4px;
     display: none;
     position: absolute;
     margin-top: 1rem;
-    width: 13rem;
+    height: 20rem;
+    width: 100%;
     background-color: #fff;
-    box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
+    overflow-y: scroll;
     &-item {
-      padding: 0 1rem;
+      padding: 1rem 1rem;
       cursor: pointer;
       &:hover {
         color: #fff;
-        background: darkblue;
+        background: #cecece;
       }
     }
   }

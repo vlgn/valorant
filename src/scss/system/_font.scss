@@ -1,4 +1,28 @@
 @import "_mixins.scss";
 
-@include font("Oswald", normal, 400, "./assets/fonts/Oswald-Regular.woff2");
-@include font("Oswald", normal, 700, "./assets/fonts/Oswald-Bold.woff2");
+@include font("Oswald", normal, 400, "/src/assets/fonts/Oswald-Regular.woff2");
+@include font("Oswald", normal, 700, "/src/assets/fonts/Oswald-Bold.woff2");
+@include font(
+  "AktivGroteskCorp",
+  normal,
+  400,
+  "/src/assets/fonts/AktivGroteskCorp-Regular.woff2"
+);
+@include font(
+  "AktivGroteskCorp",
+  normal,
+  700,
+  "/src/assets/fonts/AktivGroteskCorp-Bold.woff2"
+);
+@include font(
+  "Pretendard",
+  normal,
+  400,
+  "/src/assets/fonts/Pretendard-Regular.woff2"
+);
+@include font(
+  "Pretendard",
+  normal,
+  700,
+  "/src/assets/fonts/Pretendard-Bold.woff2"
+);

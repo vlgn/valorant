@@ -1,7 +1,11 @@
 <template>
-  <div class="rank-dropdown" :class="{ active: show }">
+  <div
+    class="rank-dropdown"
+    :class="{ active: show }"
+    @click="handlerDropdown()"
+  >
     <h2 class="rank-dropdown__title">leaderboard</h2>
-    <div class="rank-dropdown__selected-rank" @click="handlerDropdown()">
+    <div class="rank-dropdown__selected-rank">
       <span v-if="modelValue">{{ modelValue.title }}</span>
     </div>
     <div class="rank-dropdown__options">
@@ -38,7 +42,6 @@ export default {
   methods: {
     rankSelect(rank) {
       this.$emit("update:modelValue", rank);
-      this.handlerDropdown();
     },
     handlerDropdown() {
       this.show = !this.show;
@@ -48,9 +51,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/scss/_config.scss";
 .rank-dropdown {
-  text-transform: uppercase;
+  cursor: pointer;
   text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-transform: uppercase;
+  position: relative;
+
   &__selected-rank {
     cursor: pointer;
     margin-top: 1rem;
@@ -60,32 +71,31 @@ export default {
     span:after {
       content: "";
       background-image: url(../assets/img/arrow-down-white.svg);
-      display: inline-block;
       position: absolute;
       width: 3rem;
       height: 3rem;
       top: 0;
-      right: -3rem;
       bottom: 0;
-      margin: auto;
       transition: transform 0.5s;
     }
   }
   &__options {
+    font-family: $Pretendard;
     display: none;
     color: #000;
     position: absolute;
-    margin-top: 1rem;
-    width: 14rem;
+    width: 15rem;
     background-color: #fff;
-    box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
     overflow: hidden;
+    top: 9rem;
+    right: 0;
+    margin-top: 1rem;
     &-item {
-      padding: 0 1rem;
+      padding: 1rem 1rem;
       cursor: pointer;
       &:hover {
         color: #fff;
-        background: darkblue;
+        background: #cecece;
       }
     }
   }

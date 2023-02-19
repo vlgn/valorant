@@ -11,14 +11,17 @@
       ></RegionDropdown>
     </div>
     <div class="filter">
-      <img
-        class="filter__icon"
-        src="../assets/radiant-badge.png"
-        alt="rank-icon"
-      />
+      <div class="filter__icon">
+        <img src="../assets/radiant-badge.png" alt="rank-icon" />
+      </div>
 
-      <RankDropdown :ranks="ranks" v-model="selectedRank"></RankDropdown>
+      <RankDropdown
+        class="filter__rank-dropdown"
+        :ranks="ranks"
+        v-model="selectedRank"
+      ></RankDropdown>
       <SeasonDropdown
+        class="filter__season-dropdown"
         :seasons="seasons"
         v-model="selectedSeason"
       ></SeasonDropdown>
@@ -208,6 +211,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/_config.scss";
 .title {
   text-align: center;
   font-weight: bold;
@@ -220,8 +224,10 @@ export default {
   align-items: center;
   gap: 1rem;
   &__input {
+    background-color: rgb(206, 206, 206);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
     input {
-      padding: 1rem 0.5rem;
       max-width: 14rem;
     }
     input::placeholder {
@@ -229,19 +235,34 @@ export default {
     }
     i {
       cursor: pointer;
-      font-weight: bold;
     }
   }
 }
 .filter {
-  padding: 6rem;
   height: 10rem;
+  font-family: $Oswald;
+  margin-top: 1rem;
   color: white;
   background-color: black;
   display: flex;
   justify-content: space-between;
+
   align-items: center;
+  &__rank-dropdown {
+    border: 1px solid #fff;
+    height: 100%;
+    width: 100%;
+  }
+  &__season-dropdown {
+    padding-right: 2rem;
+    border: 1px solid #fff;
+    height: 100%;
+    width: 20rem;
+  }
   &__icon {
+    height: 100%;
+    width: 15rem;
+    border: 1px solid #fff;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,6 +1,10 @@
 <template>
-  <div class="season-dropdown" :class="{ active: show }">
-    <div class="season-dropdown__selected-season" @click="handlerDropdown()">
+  <div
+    class="season-dropdown"
+    :class="{ active: show }"
+    @click="handlerDropdown()"
+  >
+    <div class="season-dropdown__selected-season">
       <span class="season-dropdown__selected-episode" v-if="modelValue">{{
         modelValue.episode
       }}</span>
@@ -16,7 +20,7 @@
         class="season-dropdown__options-item"
         @click="seasonSelect(item)"
       >
-        {{ item.episode + " " + "//" + " " + item.act }}
+        {{ item.episode + " " + "///" + " " + item.act }}
       </div>
     </div>
   </div>
@@ -51,58 +55,59 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "@/scss/_config.scss";
+
 .season-dropdown {
-  margin-right: 2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+  text-align: center;
   color: #fff;
-  &__selected-episode {
-    font-size: 1.8rem;
-  }
+  width: 20rem;
+
   &__selected-act {
     font-weight: 700;
-    font-size: 3rem;
-    margin-top: 1rem;
+    font-size: 4rem;
+    padding-top: 1rem;
+
     &:after {
       content: "";
       background-image: url(../assets/img/arrow-down-white.svg);
-      display: inline-block;
       position: absolute;
       width: 3rem;
       height: 3rem;
-      right: -3rem;
-      bottom: 0;
       margin: auto;
       transition: transform 0.5s;
     }
   }
   &__selected-season {
-    cursor: pointer;
-    margin-top: 1rem;
-    font-size: 2rem;
-    font-weight: 400;
-    position: relative;
-    text-align: center;
-    text-transform: uppercase;
     span {
       display: block;
     }
   }
   &__options {
+    font-family: $Pretendard;
     display: none;
-    border: solid 1px #000;
     color: #000;
     position: absolute;
     margin-top: 1rem;
-    width: fit-content;
-    height: 15rem;
+    width: 100%;
+    height: 20rem;
+    top: 9rem;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: #fff;
-    box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
     overflow-y: scroll;
+
     &-item {
-      padding: 0.5rem 1rem;
+      padding: 1rem 1rem;
       cursor: pointer;
       &:hover {
         color: #fff;
-        background: #000;
+        background: #cecece;
       }
     }
   }
