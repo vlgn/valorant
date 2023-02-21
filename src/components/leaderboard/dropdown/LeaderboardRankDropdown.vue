@@ -1,12 +1,11 @@
 <template>
-  <div
-    class="rank-dropdown"
-    :class="{ active: show }"
-    @click="handlerDropdown()"
-  >
-    <h2 class="rank-dropdown__title">leaderboard</h2>
-    <div class="rank-dropdown__selected-rank">
-      <span v-if="modelValue">{{ modelValue.title }}</span>
+  <div class="rank-dropdown" :class="{ active: show }">
+    <div class="rank-dropdown__wrap" @click="handlerDropdown()">
+      <h2 class="rank-dropdown__title">leaderboard</h2>
+      <div class="rank-dropdown__selected-rank" v-if="modelValue">
+        {{ modelValue.title }}
+        <ArrowDown class="rank-dropdown__arrow"></ArrowDown>
+      </div>
     </div>
     <div class="rank-dropdown__options">
       <div
@@ -22,8 +21,12 @@
 </template>
 
 <script>
+import ArrowDown from "@/components/ArrowDown.vue";
 export default {
-  name: "RankDropdown",
+  name: "LeaderboardRankDropdown",
+  components: {
+    ArrowDown,
+  },
   props: {
     ranks: {
       type: Object,
@@ -42,6 +45,7 @@ export default {
   methods: {
     rankSelect(rank) {
       this.$emit("update:modelValue", rank);
+      this.handlerDropdown();
     },
     handlerDropdown() {
       this.show = !this.show;
@@ -54,30 +58,29 @@ export default {
 @import "@/scss/_config.scss";
 .rank-dropdown {
   cursor: pointer;
+  height: 100%;
+  width: 65%;
   text-align: center;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   text-transform: uppercase;
   position: relative;
 
+  &__arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+  &__wrap {
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
   &__selected-rank {
-    cursor: pointer;
     margin-top: 1rem;
     font-size: 4rem;
     font-weight: 700;
     position: relative;
-    span:after {
-      content: "";
-      background-image: url(../assets/img/arrow-down-white.svg);
-      position: absolute;
-      width: 3rem;
-      height: 3rem;
-      top: 0;
-      bottom: 0;
-      transition: transform 0.5s;
-    }
   }
   &__options {
     font-family: $Pretendard;
@@ -106,7 +109,7 @@ export default {
   }
   &.active {
     .rank-dropdown {
-      &__selected-rank span:after {
+      &__arrow {
         transform: rotate(-180deg);
       }
 

@@ -22,7 +22,7 @@
 </template>
 <script>
 export default {
-  name: "regionDropdown",
+  name: "LeaderboardRegionDropdown",
   props: {
     regions: {
       type: Object,
@@ -62,7 +62,7 @@ export default {
     padding: 0.7rem 1rem;
     span:after {
       content: "";
-      background-image: url(../assets/img/arrow-down.svg);
+      background-image: url(/src/assets/img/arrow-down.svg);
       display: inline-block;
       position: absolute;
       transition: transform 0.5s;

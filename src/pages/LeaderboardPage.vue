@@ -5,44 +5,44 @@
         <input type="text" placeholder="Playername#Tag" class="search__input" />
         <i class="uil uil-search"></i>
       </div>
-      <RegionDropdown
+      <LeaderboardRegionDropdown
         v-model="selectedRegion"
         :regions="regions"
-      ></RegionDropdown>
+      ></LeaderboardRegionDropdown>
     </div>
     <div class="filter">
       <div class="filter__icon">
         <img src="../assets/radiant-badge.png" alt="rank-icon" />
       </div>
 
-      <RankDropdown
+      <LeaderboardRankDropdown
         class="filter__rank-dropdown"
         :ranks="ranks"
         v-model="selectedRank"
-      ></RankDropdown>
-      <SeasonDropdown
+      ></LeaderboardRankDropdown>
+      <LeaderboardSeasonDropdown
         class="filter__season-dropdown"
         :seasons="seasons"
         v-model="selectedSeason"
-      ></SeasonDropdown>
+      ></LeaderboardSeasonDropdown>
     </div>
     <LeaderboardTable :competitiveTier="competitiveTier"></LeaderboardTable>
   </main>
 </template>
 
 <script>
-import RegionDropdown from "@/components/region-dropdown";
-import RankDropdown from "@/components/RankDropdown";
-import SeasonDropdown from "@/components/SeasonDropdown";
-import LeaderboardTable from "@/components/LeaderboardTable.vue";
+import LeaderboardRegionDropdown from "@/components/leaderboard/dropdown/LeaderboardRegionDropdown";
+import LeaderboardRankDropdown from "@/components/leaderboard/dropdown/LeaderboardRankDropdown";
+import LeaderboardSeasonDropdown from "@/components/leaderboard/dropdown/LeaderboardSeasonDropdown";
+import LeaderboardTable from "@/components/leaderboard/LeaderboardTable.vue";
 import unofficialValorantApi from "unofficial-valorant-api";
 
 export default {
   name: "LeaderboardPage",
   components: {
-    RegionDropdown,
-    RankDropdown,
-    SeasonDropdown,
+    LeaderboardRegionDropdown,
+    LeaderboardRankDropdown,
+    LeaderboardSeasonDropdown,
     LeaderboardTable,
   },
   data() {
@@ -55,9 +55,9 @@ export default {
         title: "radiant",
       },
       selectedSeason: {
-        episode: "episode 2",
-        act: "act 2",
-        code: "e2a1",
+        episode: "episode 6",
+        act: "act 1",
+        code: "e6a1",
       },
       seasons: [
         {
@@ -171,6 +171,7 @@ export default {
   },
   mounted() {
     this.getTableData();
+    this.getTableData2();
   },
   watch: {
     selectedRegion() {
@@ -205,7 +206,18 @@ export default {
           this.competitiveTier[`tier-${tier[0]}`] = tier[1];
         });
 
-      console.log(this.competitiveTier);
+      console.log(response.data);
+    },
+    async getTableData2() {
+      this.competitiveTier = {};
+      const VAPI = new unofficialValorantApi();
+      const response = await VAPI.getLeaderboard({
+        version: "v2",
+        region: this.selectedRegion.code,
+        season: this.selectedSeason.code,
+      });
+
+      console.log(response);
     },
   },
 };
@@ -251,18 +263,13 @@ export default {
   align-items: center;
   &__rank-dropdown {
     border: 1px solid #cecece;
-    height: 100%;
-    width: 100%;
   }
   &__season-dropdown {
-    padding-right: 2rem;
     border: 1px solid #cecece;
-    height: 100%;
-    width: 20rem;
   }
   &__icon {
     height: 100%;
-    width: 15rem;
+    width: 15%;
     border: 1px solid #cecece;
     display: flex;
     align-items: center;

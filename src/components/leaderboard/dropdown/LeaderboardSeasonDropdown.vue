@@ -1,16 +1,13 @@
 <template>
-  <div
-    class="season-dropdown"
-    :class="{ active: show }"
-    @click="handlerDropdown()"
-  >
-    <div class="season-dropdown__selected-season">
+  <div class="season-dropdown" :class="{ active: show }">
+    <div class="season-dropdown__selected-season" @click="handlerDropdown()">
       <span class="season-dropdown__selected-episode" v-if="modelValue">{{
         modelValue.episode
       }}</span>
-      <span class="season-dropdown__selected-act" v-if="modelValue">{{
-        modelValue.act
-      }}</span>
+      <span class="season-dropdown__selected-act" v-if="modelValue"
+        >{{ modelValue.act }}
+        <ArrowDown class="season-dropdown__arrow"></ArrowDown>
+      </span>
       <span v-else>Не выбрано</span>
     </div>
     <div class="season-dropdown__options">
@@ -26,8 +23,12 @@
   </div>
 </template>
 <script>
+import ArrowDown from "@/components/ArrowDown.vue";
 export default {
-  name: "SeasonDropdown",
+  name: "LeaderboardSeasonDropdown",
+  components: {
+    ArrowDown,
+  },
   props: {
     seasons: {
       type: Object,
@@ -49,6 +50,7 @@ export default {
       this.handlerDropdown();
     },
     handlerDropdown() {
+      console.log("hello");
       this.show = !this.show;
     },
   },
@@ -60,34 +62,27 @@ export default {
 .season-dropdown {
   cursor: pointer;
   text-transform: uppercase;
-  justify-content: center;
-  display: flex;
-  align-items: center;
+
   position: relative;
   text-align: center;
   color: #fff;
-  width: 20rem;
-
+  height: 100%;
+  width: 20%;
+  &__arrow {
+    position: absolute;
+  }
+  &__selected-season {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
   &__selected-act {
     font-weight: 700;
     font-size: 4rem;
     padding-top: 1rem;
+  }
 
-    &:after {
-      content: "";
-      background-image: url(../assets/img/arrow-down-white.svg);
-      position: absolute;
-      width: 3rem;
-      height: 3rem;
-      margin: auto;
-      transition: transform 0.5s;
-    }
-  }
-  &__selected-season {
-    span {
-      display: block;
-    }
-  }
   &__options {
     font-family: $Pretendard;
     color: #000;
@@ -118,7 +113,7 @@ export default {
 }
 .active {
   .season-dropdown {
-    &__selected-act:after {
+    &__arrow {
       transform: rotate(-180deg);
     }
 
